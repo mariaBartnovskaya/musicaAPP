@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import Player from './components/barPlayer/barPlayer'
+import CenterContent from './components/centerblock/centercontent'
+import CenterTitle from './components/centerblock/centerTitle'
+import Filter from './components/filter/filter'
+import Sidebar from './components/menubar/sidebar'
+import Personal from './components/personal/personal'
+import SearchBar from './components/searchbar/searchbar'
+import SidebarBlock from './components/sidebarBlock/sidebarBlock'
+import './css/style.css'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="wrapper">
+        <div className="container">
+          <main className="main">
+            <Sidebar />
+            <div className="main__centerblock centerblock">
+              <SearchBar />
+              <CenterTitle />
+              <Filter />
+              <CenterContent />
+            </div>
+
+            <div className="main__sidebar">
+              <Personal />
+              <SidebarBlock />
+            </div>
+          </main>
+          <Player />
+        </div>
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
