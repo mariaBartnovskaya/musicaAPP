@@ -1,7 +1,17 @@
-// eslint-disable-next-line no-unused-vars
-import React from 'react'
+import { useState, useEffect } from 'react'
+
+// eslint-disable-next-line import/no-extraneous-dependencies
+import Skeleton from 'react-loading-skeleton'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import 'react-loading-skeleton/dist/skeleton.css'
 
 function Player() {
+  const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false)
+    }, 5000)
+  }, [])
   return (
     <div className="bar">
       <div className="bar__content">
@@ -39,19 +49,31 @@ function Player() {
             <div className="player__track-play track-play">
               <div className="track-play__contain">
                 <div className="track-play__image">
-                  <svg className="track-play__svg" alt="music">
-                    <use xlinkHref="img/icon/sprite.svg#icon-note" />
-                  </svg>
+                  {loading ? (
+                    <Skeleton count={1} width={51} height={51} />
+                  ) : (
+                    <svg className="track-play__svg" alt="music">
+                      <use xlinkHref="img/icon/sprite.svg#icon-note" />
+                    </svg>
+                  )}
                 </div>
                 <div className="track-play__author">
-                  <a className="track-play__author-link" href="http://">
-                    Ты та...
-                  </a>
+                  {loading ? (
+                    <Skeleton count={1} />
+                  ) : (
+                    <a className="track-play__author-link" href="http://">
+                      Ты та...
+                    </a>
+                  )}
                 </div>
                 <div className="track-play__album">
-                  <a className="track-play__album-link" href="http://">
-                    Баста
-                  </a>
+                  {loading ? (
+                    <Skeleton count={1} />
+                  ) : (
+                    <a className="track-play__album-link" href="http://">
+                      Баста
+                    </a>
+                  )}
                 </div>
               </div>
 
