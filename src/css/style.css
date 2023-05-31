@@ -62,13 +62,13 @@ body {
   cursor: pointer;
 }
 
-._btn-text:active {
+._btn-text_active {
   border-color: #ad61ff;
   color: #ad61ff;
   cursor: pointer;
 }
 
-._btn-icon:active svg {
+._btn-icon_active svg {
   fill: transparent;
   stroke: #ffffff;
   cursor: pointer;
@@ -873,4 +873,42 @@ body {
     url('../css/fonts/Stratos-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
+}
+
+.filter__options {
+  position: absolute;
+  margin-top: 10px;
+  z-index: 2;
+  z-index: 2;
+  background-color: #313131;
+  width: 248px;
+  border-radius: 12px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 34px;
+  gap: 28px;
+
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+
+  color: #b672ff;
+}
+.dropdown-item {
+  font-family: 'StratosSkyeng';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+
+  font-feature-settings: 'pnum' on, 'lnum' on;
+
+  color: #ffffff;
+}
+._btn-text_active {
+  border-color: #ad61ff;
+  color: #ad61ff;
+  cursor: pointer;
 }
