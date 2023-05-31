@@ -1,28 +1,28 @@
 import Player from './components/barPlayer/barPlayer'
-import CenterContent from './components/centerblock/centercontent'
-import CenterTitle from './components/centerblock/centerTitle'
+import CenterContent from './components/centercontent/centercontent'
+import CenterTitle from './components/centertitle/centerTitle'
 import Filter from './components/filter/filter'
-import Sidebar from './components/menubar/sidebar'
+import Sidebar from './components/sidebar/sidebar'
 import Personal from './components/personal/personal'
 import SearchBar from './components/searchbar/searchbar'
 import SidebarBlock from './components/sidebarBlock/sidebarBlock'
-import './css/style.css'
+import s from './App.module.css'
 
 function App() {
   return (
     <div className="App">
-      <div className="wrapper">
-        <div className="container">
-          <main className="main">
+      <div className={s.wrapper}>
+        <div className={s.container}>
+          <main className={s.main}>
             <Sidebar />
-            <div className="main__centerblock centerblock">
+            <div className={`${s.main__centerblock} centerblock`}>
               <SearchBar />
               <CenterTitle />
               <Filter />
               <CenterContent />
             </div>
 
-            <div className="main__sidebar">
+            <div className={s.main__sidebar}>
               <Personal />
               <SidebarBlock />
             </div>

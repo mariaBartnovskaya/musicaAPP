@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'react-loading-skeleton/dist/skeleton.css'
+import s from './playlistcontent.module.css'
 
 const playlistItems = [
   {
@@ -104,54 +105,54 @@ function Playlist() {
       backgroundColor="#313131"
       highlightColor="#313131"
     >
-      <div className="content__playlist playlist">
+      <div className={`${s.content__playlist} playlist`}>
         {playlistItems.map((item) => (
-          <div className="playlist__item" key={item.id}>
-            <div className="playlist__track track">
-              <div className="track__title">
-                <div className="track__title-image">
-                  <svg className="track__title-svg" alt="music">
+          <div className={s.playlist__item} key={item.id}>
+            <div className={`${s.playlist__track} track`}>
+              <div className={s.track__title}>
+                <div className={s.track__title_image}>
+                  <svg className={s.track__title_svg} alt="music">
                     <use xlinkHref="img/icon/sprite.svg#icon-note" />
                   </svg>
                 </div>
-                <div className="track__title-text">
+                <div className={s.track__title_text}>
                   {loading ? (
                     <Skeleton width={350} />
                   ) : (
-                    <a className="track__title-link" href="http://">
-                      {item.title} <span className="track__title-span" />
+                    <a className={s.track__title_link} href="http://">
+                      {item.title} <span className={s.track__title_span} />
                     </a>
                   )}
                 </div>
-                <div className="track__author">
-                  {loading ? (
-                    <Skeleton width={270} />
-                  ) : (
-                    <a className="track__author-link" href="http://">
-                      {item.author}
-                    </a>
-                  )}
-                </div>
-                <div className="track__album">
-                  {loading ? (
-                    <Skeleton width={270} />
-                  ) : (
-                    <a className="track__album-link" href="http://">
-                      {item.album}
-                    </a>
-                  )}
-                </div>
+              </div>
+              <div className={s.track__author}>
                 {loading ? (
-                  <Skeleton width={1} />
+                  <Skeleton width={270} />
                 ) : (
-                  <div className="track__time">
-                    <svg className="track__time-svg" alt="time">
-                      <use xlinkHref="img/icon/sprite.svg#icon-like" />
-                    </svg>
-                    <span className="track__time-text">{item.time}</span>
-                  </div>
+                  <a className={s.track__author_link} href="http://">
+                    {item.author}
+                  </a>
                 )}
               </div>
+              <div className={s.track__album}>
+                {loading ? (
+                  <Skeleton width={270} />
+                ) : (
+                  <a className={s.track__album_link} href="http://">
+                    {item.album}
+                  </a>
+                )}
+              </div>
+              {loading ? (
+                <Skeleton width={1} />
+              ) : (
+                <div className={s.track__time}>
+                  <svg className={s.track__time_svg} alt="time">
+                    <use xlinkHref="img/icon/sprite.svg#icon-like" />
+                  </svg>
+                  <span className={s.track__time_text}>{item.time}</span>
+                </div>
+              )}
             </div>
           </div>
         ))}

@@ -1,4 +1,6 @@
-function Genre({ onClick, isActive }) {
+import s from './year.module.css'
+
+function Year({ onClick, isActive }) {
   const toggleVisibility = () => {
     onClick()
   }
@@ -6,12 +8,12 @@ function Genre({ onClick, isActive }) {
     <div
       onClick={toggleVisibility}
       aria-hidden="true"
-      className={`filter__button button-author _btn-text ${
+      className={`${s.filter__button} ${s.button_author} ${s.btn_text} ${
         isActive ? '_btn-text_active' : ''
       }`}
     >
-      жанру
+      году выпуска
     </div>
   )
 }
-export default Genre
+export default Year

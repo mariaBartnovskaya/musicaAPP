@@ -1,3 +1,5 @@
+import s from './performer.module.css'
+
 function Performer({ onClick, isActive }) {
   const toggleVisibility = () => {
     onClick()
@@ -6,7 +8,7 @@ function Performer({ onClick, isActive }) {
     <div
       onClick={toggleVisibility}
       aria-hidden="true"
-      className={`filter__button button-author _btn-text ${
+      className={`${s.filter__button} ${s.button_author} ${s.btn_text} ${
         isActive ? '_btn-text_active' : ''
       }`}
     >

@@ -1,10 +1,11 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react'
-import Options from './filteroptions'
+import Options from '../filteroptions/filteroptions'
 
-import Genre from './genre'
-import Performer from './perfomer'
-import Year from './year'
+import Genre from '../genre/genre'
+import Performer from '../performer/perfomer'
+import Year from '../year/year'
+import s from './filter.module.css'
 
 function Filter() {
   const [visibleFilter, setVisibleFilter] = useState(null)
@@ -12,8 +13,8 @@ function Filter() {
     setVisibleFilter(visibleFilter === filter ? null : filter)
   }
   return (
-    <div className="main__centerblock  centerblock__filter filter">
-      <div className="filter__title">Искать по:</div>
+    <div className={` ${s.centerblock__filter} filter`}>
+      <div className={s.filter__title}>Искать по:</div>
 
       <div>
         <Performer
