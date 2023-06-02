@@ -5,6 +5,7 @@ import Skeleton from 'react-loading-skeleton'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'react-loading-skeleton/dist/skeleton.css'
 import s from './barPlayer.module.css'
+import icon from '../assets/img/icon/sprite.svg'
 
 function Player() {
   const [loading, setLoading] = useState(true)
@@ -22,27 +23,27 @@ function Player() {
             <div className={s.player__controls}>
               <div className={s.player__btn_prev}>
                 <svg className={s.player__btn_prev_svg} alt="prev">
-                  <use xlinkHref="img/icon/sprite.svg#icon-prev" />
+                  <use xlinkHref={`${icon}#icon-prev`} />
                 </svg>
               </div>
               <div className={s.player__btn_play}>
                 <svg className={s.player__btn_play_svg} alt="play">
-                  <use xlinkHref="img/icon/sprite.svg#icon-play" />
+                  <use xlinkHref={`${icon}#icon-play`} />
                 </svg>
               </div>
               <div className={s.player__btn_next}>
                 <svg className={s.player__btn_next_svg} alt="next">
-                  <use xlinkHref="img/icon/sprite.svg#icon-next" />
+                  <use xlinkHref={`${icon}#icon-next`} />
                 </svg>
               </div>
               <div className={s.player__btn_repeat}>
                 <svg className={s.player__btn_repeat_svg} alt="repeat">
-                  <use xlinkHref="img/icon/sprite.svg#icon-repeat" />
+                  <use xlinkHref={`${icon}#icon-repeat`} />
                 </svg>
               </div>
               <div className={s.player__btn_shuffle}>
                 <svg className={s.player__btn_shuffle_svg} alt="shuffle">
-                  <use xlinkHref="img/icon/sprite.svg#icon-shuffle" />
+                  <use xlinkHref={`${icon}#icon-shuffle`} />
                 </svg>
               </div>
             </div>
@@ -81,12 +82,12 @@ function Player() {
               <div className={s.trackPlay__like_dis}>
                 <div className={`${s.trackPlay__like} _btn_icon`}>
                   <svg className={s.trackPlay__like_svg} alt="like">
-                    <use xlinkHref="img/icon/sprite.svg#icon-like" />
+                    <use xlinkHref={`${icon}#icon-like`} />
                   </svg>
                 </div>
                 <div className={s.trackPlay__dislike}>
                   <svg className={s.trackPlay__dislike_svg} alt="dislike">
-                    <use xlinkHref="img/icon/sprite.svg#icon-dislike" />
+                    <use xlinkHref={`${icon}#icon-dislike`} />
                   </svg>
                 </div>
               </div>
@@ -96,7 +97,7 @@ function Player() {
             <div className={s.volume__content}>
               <div className={s.volume__image}>
                 <svg className={s.volume__svg} alt="volume">
-                  <use xlinkHref="img/icon/sprite.svg#icon-volume" />
+                  <use xlinkHref={`${icon}#icon-volume`} />
                 </svg>
               </div>
               <div className={`${s.volume__progress} _btn`}>

@@ -4,6 +4,7 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'react-loading-skeleton/dist/skeleton.css'
 import s from './playlistcontent.module.css'
+import icon from '../assets/img/icon/sprite.svg'
 
 const playlistItems = [
   {
@@ -112,7 +113,7 @@ function Playlist() {
               <div className={s.track__title}>
                 <div className={s.track__title_image}>
                   <svg className={s.track__title_svg} alt="music">
-                    <use xlinkHref="img/icon/sprite.svg#icon-note" />
+                    <use xlinkHref={`${icon}#icon-note`} />
                   </svg>
                 </div>
                 <div className={s.track__title_text}>
@@ -148,7 +149,7 @@ function Playlist() {
               ) : (
                 <div className={s.track__time}>
                   <svg className={s.track__time_svg} alt="time">
-                    <use xlinkHref="img/icon/sprite.svg#icon-like" />
+                    <use xlinkHref={`${icon}#icon-like`} />
                   </svg>
                   <span className={s.track__time_text}>{item.time}</span>
                 </div>
