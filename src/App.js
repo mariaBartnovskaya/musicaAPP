@@ -1,34 +1,15 @@
-import Player from './components/barPlayer/barPlayer'
-import CenterContent from './components/centercontent/centercontent'
-import CenterTitle from './components/centertitle/centerTitle'
-import Filter from './components/filter/filter'
-import Sidebar from './components/sidebar/sidebar'
-import Personal from './components/personal/personal'
-import SearchBar from './components/searchbar/searchbar'
-import SidebarBlock from './components/sidebarBlock/sidebarBlock'
+import { useState } from 'react'
+
 import s from './App.module.css'
 
+import AppRoutes from './routes'
+
 function App() {
+  const [user, setUser] = useState(null)
   return (
     <div className="App">
-      <div className={s.wrapper}>
-        <div className={s.container}>
-          <main className={s.main}>
-            <Sidebar />
-            <div className={`${s.main__centerblock} centerblock`}>
-              <SearchBar />
-              <CenterTitle />
-              <Filter />
-              <CenterContent />
-            </div>
-
-            <div className={s.main__sidebar}>
-              <Personal />
-              <SidebarBlock />
-            </div>
-          </main>
-          <Player />
-        </div>
+      <div className={s.container}>
+        <AppRoutes user={user} setUser={setUser} />
       </div>
     </div>
   )
