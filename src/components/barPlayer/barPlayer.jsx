@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react'
 import Skeleton from 'react-loading-skeleton'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'react-loading-skeleton/dist/skeleton.css'
+import s from './barPlayer.module.css'
+import icon from '../assets/img/icon/sprite.svg'
 
 function Player() {
   const [loading, setLoading] = useState(true)
@@ -13,94 +15,94 @@ function Player() {
     }, 5000)
   }, [])
   return (
-    <div className="bar">
-      <div className="bar__content">
-        <div className="bar__player-progress" />
-        <div className="bar__player-block">
-          <div className="bar__player player">
-            <div className="player__controls">
-              <div className="player__btn-prev">
-                <svg className="player__btn-prev-svg" alt="prev">
-                  <use xlinkHref="img/icon/sprite.svg#icon-prev" />
+    <div className={s.bar}>
+      <div className={s.content}>
+        <div className={s.playerProgress} />
+        <div className={s.bar__playerBlock}>
+          <div className={s.bar__player}>
+            <div className={s.player__controls}>
+              <div className={s.player__btn_prev}>
+                <svg className={s.player__btn_prev_svg} alt="prev">
+                  <use xlinkHref={`${icon}#icon-prev`} />
                 </svg>
               </div>
-              <div className="player__btn-play _btn">
-                <svg className="player__btn-play-svg" alt="play">
-                  <use xlinkHref="img/icon/sprite.svg#icon-play" />
+              <div className={s.player__btn_play}>
+                <svg className={s.player__btn_play_svg} alt="play">
+                  <use xlinkHref={`${icon}#icon-play`} />
                 </svg>
               </div>
-              <div className="player__btn-next">
-                <svg className="player__btn-next-svg" alt="next">
-                  <use xlinkHref="img/icon/sprite.svg#icon-next" />
+              <div className={s.player__btn_next}>
+                <svg className={s.player__btn_next_svg} alt="next">
+                  <use xlinkHref={`${icon}#icon-next`} />
                 </svg>
               </div>
-              <div className="player__btn-repeat _btn-icon">
-                <svg className="player__btn-repeat-svg" alt="repeat">
-                  <use xlinkHref="img/icon/sprite.svg#icon-repeat" />
+              <div className={s.player__btn_repeat}>
+                <svg className={s.player__btn_repeat_svg} alt="repeat">
+                  <use xlinkHref={`${icon}#icon-repeat`} />
                 </svg>
               </div>
-              <div className="player__btn-shuffle _btn-icon">
-                <svg className="player__btn-shuffle-svg" alt="shuffle">
-                  <use xlinkHref="img/icon/sprite.svg#icon-shuffle" />
+              <div className={s.player__btn_shuffle}>
+                <svg className={s.player__btn_shuffle_svg} alt="shuffle">
+                  <use xlinkHref={`${icon}#icon-shuffle`} />
                 </svg>
               </div>
             </div>
 
-            <div className="player__track-play track-play">
-              <div className="track-play__contain">
-                <div className="track-play__image">
+            <div className={s.player__track_play}>
+              <div className={s.trackPlay__contain}>
+                <div className={s.trackPlay__image}>
                   {loading ? (
                     <Skeleton count={1} width={51} height={51} />
                   ) : (
-                    <svg className="track-play__svg" alt="music">
+                    <svg className={s.trackPlay__svg} alt="music">
                       <use xlinkHref="img/icon/sprite.svg#icon-note" />
                     </svg>
                   )}
                 </div>
-                <div className="track-play__author">
+                <div className={s.trackPlay__author}>
                   {loading ? (
                     <Skeleton count={1} />
                   ) : (
-                    <a className="track-play__author-link" href="http://">
+                    <a className={s.trackPlay__author_link} href="http://">
                       Ты та...
                     </a>
                   )}
                 </div>
-                <div className="track-play__album">
+                <div className={s.trackPlay__album}>
                   {loading ? (
                     <Skeleton count={1} />
                   ) : (
-                    <a className="track-play__album-link" href="http://">
+                    <a className={s.trackPlay__album_link} href="http://">
                       Баста
                     </a>
                   )}
                 </div>
               </div>
 
-              <div className="track-play__like-dis">
-                <div className="track-play__like _btn-icon">
-                  <svg className="track-play__like-svg" alt="like">
-                    <use xlinkHref="img/icon/sprite.svg#icon-like" />
+              <div className={s.trackPlay__like_dis}>
+                <div className={`${s.trackPlay__like} _btn_icon`}>
+                  <svg className={s.trackPlay__like_svg} alt="like">
+                    <use xlinkHref={`${icon}#icon-like`} />
                   </svg>
                 </div>
-                <div className="track-play__dislike _btn-icon">
-                  <svg className="track-play__dislike-svg" alt="dislike">
-                    <use xlinkHref="img/icon/sprite.svg#icon-dislike" />
+                <div className={s.trackPlay__dislike}>
+                  <svg className={s.trackPlay__dislike_svg} alt="dislike">
+                    <use xlinkHref={`${icon}#icon-dislike`} />
                   </svg>
                 </div>
               </div>
             </div>
           </div>
-          <div className="bar__volume-block volume">
-            <div className="volume__content">
-              <div className="volume__image">
-                <svg className="volume__svg" alt="volume">
-                  <use xlinkHref="img/icon/sprite.svg#icon-volume" />
+          <div className={`${s.bar__volume_block} volume`}>
+            <div className={s.volume__content}>
+              <div className={s.volume__image}>
+                <svg className={s.volume__svg} alt="volume">
+                  <use xlinkHref={`${icon}#icon-volume`} />
                 </svg>
               </div>
-              <div className="volume__progress _btn">
+              <div className={`${s.volume__progress} _btn`}>
                 <input
-                  className="volume__progress-line _btn"
+                  className={`${s.volume__progress_line} _btn`}
                   type="range"
                   name="range"
                 />

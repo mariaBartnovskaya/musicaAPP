@@ -1,11 +1,12 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react'
+import s from './personal.module.css'
 
 function Personal() {
   return (
-    <div className=" sidebar__personal">
-      <p className="sidebar__personal-name">Sergey.Ivanov</p>
-      <div className="sidebar__avatar" />
+    <div className={`${s.sidebar__personal} ${s.main__sidebar}`}>
+      <p className={s.sidebar__personal_name}>Sergey.Ivanov</p>
+      <div className={s.sidebar__avatar} />
     </div>
   )
 }

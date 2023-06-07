@@ -1,12 +1,13 @@
 import { useState } from 'react'
-import Burger from './burger'
-import MenuItem from './menuItems'
+import Burger from '../burger/burger'
+import MenuItem from '../menuitems/menuItems'
+import s from './navmenu.module.css'
 
 function NavMenu() {
   const [visible, setVisible] = useState(false)
   const toggleVisibility = () => setVisible(!visible)
   return (
-    <div className="nav__menu menu">
+    <div className={`${s.nav__menu} menu`}>
       <Burger onClick={toggleVisibility} />
       {visible && <MenuItem />}
     </div>
