@@ -1,7 +1,7 @@
 /* eslint-disable react/button-has-type */
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
-import logo from '../assets/img/logo.png'
+import logo from '../assets/img/logo_modal.png'
 import s from './signin.module.css'
 
 function SignIn({ setUser }) {
@@ -18,6 +18,10 @@ function SignIn({ setUser }) {
     event.preventDefault()
     setUser({ login: username })
     navigate('/')
+  }
+  const handleRegistrationButtonClick = (event) => {
+    event.preventDefault()
+    navigate('/registration', { replace: true })
   }
   return (
     <div className={s.wrapper}>
@@ -52,7 +56,11 @@ function SignIn({ setUser }) {
             >
               Войти
             </button>
-            <button className={s.modal__btn_signup} id="btnSignUp">
+            <button
+              className={s.modal__btn_signup}
+              onClick={handleRegistrationButtonClick}
+              id="btnSignUp"
+            >
               Зарегистрироваться
             </button>
           </form>

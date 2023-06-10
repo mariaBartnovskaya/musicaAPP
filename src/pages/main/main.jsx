@@ -8,10 +8,9 @@ import SearchBar from '../../components/searchbar/searchbar'
 import SidebarBlock from '../../components/sidebarBlock/sidebarBlock'
 import s from '../../App.module.css'
 import Sidebar from '../../components/sidebar/sidebar'
-import Wrapper from '../../components/wrapper/wrapper'
 
 function Main() {
-  ;<Wrapper>
+  return (
     <main className={s.main}>
       <Sidebar />
       <div className={`${s.main__centerblock} centerblock`}>
@@ -25,8 +24,8 @@ function Main() {
         <Personal />
         <SidebarBlock />
       </div>
+      <Player />
     </main>
-    <Player />
-  </Wrapper>
+  )
 }
 export default Main

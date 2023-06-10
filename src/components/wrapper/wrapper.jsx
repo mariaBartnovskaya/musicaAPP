@@ -1,6 +1,6 @@
 import s from './wrapper.module.css'
 
-function Wrapper() {
-  return <div className={s.container} />
+function Wrapper({ children }) {
+  return <div className={s.container}>{children}</div>
 }
 export default Wrapper

@@ -77,17 +77,14 @@ body {
   height: 439px;
   background-color: #ffffff;
   border-radius: 12px;
-  display: -webkit-box;
-  display: -ms-flexbox;
+
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
+
   flex-direction: column;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
+
   align-items: center;
   padding: 43px 47px 47px 40px;
+  justify-content: space-between;
 }
 
 .modal__form_login input:first-child {
@@ -112,7 +109,7 @@ body {
   border-left: none;
   border-right: none;
   border-bottom: 1px solid #d0cece;
-  padding: 8px 1px;
+  padding: 20px 1px;
 }
 
 .modal__input::-webkit-input-placeholder {
