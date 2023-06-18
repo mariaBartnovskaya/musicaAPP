@@ -1,3 +1,5 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { NavLink } from 'react-router-dom'
 import s from './menuItems.module.css'
 
 function MenuItem() {
@@ -5,14 +7,14 @@ function MenuItem() {
     <div className={`${s.nav__menu} menu`}>
       <ul className={s.menu__list}>
         <li className={s.menu__item}>
-          <a href="http://" className={s.menu__link}>
+          <NavLink to="/" className={s.menu__link}>
             Главное
-          </a>
+          </NavLink>
         </li>
         <li className={s.menu__item}>
-          <a href="http://" className={s.menu__link}>
+          <NavLink to="/myplaylist" className={s.menu__link}>
             Мой плейлист
-          </a>
+          </NavLink>
         </li>
         <li className={s.menu__item}>
           <a href="http://" className={s.menu__link}>
