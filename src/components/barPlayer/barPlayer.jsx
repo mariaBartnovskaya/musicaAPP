@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+/* eslint-disable jsx-a11y/media-has-caption */
+import { useState, useEffect, useRef } from 'react'
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Skeleton from 'react-loading-skeleton'
@@ -6,6 +7,8 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import s from './barPlayer.module.css'
 import icon from '../assets/img/icon/sprite.svg'
+import song from '../../css/audio.mp3'
+import PlayerProgress from './progressBar'
 
 function Player() {
   const [loading, setLoading] = useState(true)
@@ -14,23 +17,68 @@ function Player() {
       setLoading(false)
     }, 5000)
   }, [])
+  const [isPlaying, setIsPlaying] = useState(false)
+  const audioRef = useRef(null)
+  const progressBarRef = useRef(null)
+  const [duration, setDuration] = useState(null)
+
+  const handleStart = () => {
+    audioRef.current.play()
+    setIsPlaying(true)
+  }
+
+  const handleStop = () => {
+    audioRef.current.pause()
+    setIsPlaying(false)
+  }
+
+  const btnPlay = (
+    <div
+      className={s.player__btn_play}
+      onClick={handleStart}
+      aria-hidden="true"
+    >
+      <svg className={s.player__btn_play_svg} alt="play">
+        <use xlinkHref={`${icon}#icon-play`} />
+      </svg>
+    </div>
+  )
+  const onLoadedMetadata = () => {
+    const seconds = audioRef.current.duration
+    setDuration(seconds)
+    progressBarRef.current.max = seconds
+  }
+
+  const btnStop = (
+    <div className={s.player__btn_play} onClick={handleStop} aria-hidden="true">
+      <svg className={s.player__btn_play_svg} alt="stop">
+        <use xlinkHref={`${icon}#icon-pause`} />
+      </svg>
+    </div>
+  )
+  const togglePlay = isPlaying ? btnStop : btnPlay
   return (
     <div className={s.bar}>
       <div className={s.content}>
-        <div className={s.playerProgress} />
+        <PlayerProgress
+          audioRef={audioRef}
+          progressBarRef={progressBarRef}
+          duration={duration}
+        />
         <div className={s.bar__playerBlock}>
           <div className={s.bar__player}>
             <div className={s.player__controls}>
               <div className={s.player__btn_prev}>
+                <audio
+                  ref={audioRef}
+                  src={song}
+                  onLoadedMetadata={onLoadedMetadata}
+                />
                 <svg className={s.player__btn_prev_svg} alt="prev">
                   <use xlinkHref={`${icon}#icon-prev`} />
                 </svg>
               </div>
-              <div className={s.player__btn_play}>
-                <svg className={s.player__btn_play_svg} alt="play">
-                  <use xlinkHref={`${icon}#icon-play`} />
-                </svg>
-              </div>
+              {togglePlay}
               <div className={s.player__btn_next}>
                 <svg className={s.player__btn_next_svg} alt="next">
                   <use xlinkHref={`${icon}#icon-next`} />
@@ -114,4 +162,5 @@ function Player() {
     </div>
   )
 }
+
 export default Player
