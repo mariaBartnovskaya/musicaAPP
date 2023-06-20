@@ -77,6 +77,7 @@
 .player__btn_play,
 .player__btn_next,
 .player__btn_repeat,
+.player__btn_stop,
 .player__btn_shuffle {
   padding: 5px;
   display: -webkit-box;
@@ -85,6 +86,9 @@
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+}
+.player__btn_stop_svg {
+  fill: #ffffff;
 }
 
 .player__btn_prev {

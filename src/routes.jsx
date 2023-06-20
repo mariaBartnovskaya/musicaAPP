@@ -2,6 +2,7 @@
 import { Routes, Route } from 'react-router-dom'
 import Registration from './components/signin/registration'
 import SignIn from './components/signin/signin'
+import Favourites from './pages/favourites/favourites'
 
 import Main from './pages/main/main'
 
@@ -12,6 +13,7 @@ function AppRoutes({ user, setUser }) {
   return (
     <Routes>
       <Route path="/signin" element={<SignIn setUser={setUser} />} />
+      <Route path="/favourites" element={<Favourites />} />
       <Route path="/registration" element={<Registration />} />
       <Route element={<ProtectedRoute isAllowed={Boolean(user)} />}>
         <Route path="/" element={<Main />} />
