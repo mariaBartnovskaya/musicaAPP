@@ -1,7 +1,13 @@
 .main__nav {
   width: 244px;
-  background-color: #181818;
+
   padding: 20px 0 20px 36px;
+}
+.light.main__nav {
+  background-color: #f6f5f3;
+}
+.dark.main__nav {
+  background-color: #181818;
 }
 .nav__logo {
   width: 113.33px;

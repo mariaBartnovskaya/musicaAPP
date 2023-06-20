@@ -47,7 +47,12 @@ body {
   height: 100vh;
   margin: 0 auto;
   position: relative;
+}
+.dark.container {
   background-color: #181818;
+}
+.light.container {
+  background-color: #ffffff;
 }
 
 ._btn-text:hover {
