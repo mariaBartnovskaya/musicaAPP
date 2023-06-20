@@ -1,7 +1,7 @@
-/* eslint-disable react/jsx-no-constructed-context-values */
-import { useState, useEffect } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import s from './App.module.css'
+import './contexts/themes.css'
 
 import { ThemeContext, themes } from './contexts/theme'
 
@@ -11,10 +11,6 @@ function App() {
   const [user, setUser] = useState(null)
   const [currentTheme, setCurrentTheme] = useState(themes.light)
 
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', currentTheme)
-  }, [currentTheme])
-
   const toggleTheme = () => {
     if (currentTheme === themes.dark) {
       setCurrentTheme(themes.light)
@@ -22,9 +18,16 @@ function App() {
     }
     setCurrentTheme(themes.dark)
   }
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', currentTheme)
+  }, [currentTheme])
 
+  const valueTheme = useMemo(
+    () => ({ theme: currentTheme, toggleTheme }),
+    [currentTheme]
+  )
   return (
-    <ThemeContext.Provider value={{ theme: currentTheme, toggleTheme }}>
+    <ThemeContext.Provider value={valueTheme}>
       <div className="App">
         <div className={s.container}>
           <AppRoutes user={user} setUser={setUser} />

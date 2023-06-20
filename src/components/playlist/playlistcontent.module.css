@@ -30,7 +30,6 @@
   width: 51px;
   height: 51px;
   padding: 16px;
-  background: #313131;
 
   display: flex;
 
@@ -38,6 +37,12 @@
 
   justify-content: center;
   margin-right: 17px;
+}
+.dark.track__title_image {
+  background: #313131;
+}
+.light.track__title_image {
+  background: #f6f4f4;
 }
 .track__title_svg {
   width: 18px;
@@ -50,7 +55,7 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: #ffffff;
+  color: var(--text-color);
 }
 
 .track__title_span {
@@ -59,6 +64,12 @@
   font-size: 16px;
   line-height: 24px;
   color: #4e4e4e;
+}
+.light.track__title_link {
+  --text-color: #000;
+}
+.dark.track__title_link {
+  --text-color: #fff;
 }
 .track__author {
   width: 321px;
@@ -73,7 +84,7 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: #ffffff;
+  color: var(--text-color);
   text-align: left;
 }
 
@@ -85,16 +96,16 @@
   height: 12px;
   margin-right: 17px;
   fill: transparent;
-  stroke: #696969;
+  stroke: var(--color-gray-text);
 }
 
-.track__time-text {
+.track__time_text {
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
   text-align: right;
-  color: #696969;
+  color: var(--color-gray-text);
 }
 
 .track__album_link {
@@ -102,5 +113,5 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: #696969;
+  color: var(--color-gray-text);
 }

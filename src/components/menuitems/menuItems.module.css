@@ -12,8 +12,14 @@
 }
 
 .menu__link {
-  color: #ffffff;
+  color: var(--text-color);
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
+}
+.dark.menu__link {
+  --text-color: #ffffff;
+}
+.light.menu__link {
+  --text-color: #000000;
 }

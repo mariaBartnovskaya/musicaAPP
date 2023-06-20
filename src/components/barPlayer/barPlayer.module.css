@@ -3,7 +3,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  background: rgba(28, 28, 28, 0.5);
+  background: var(--bg-bar);
 }
 
 .content {
@@ -24,8 +24,7 @@
 
 .bar__playerBlock {
   height: 73px;
-  display: -webkit-box;
-  display: -ms-flexbox;
+
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
@@ -37,8 +36,6 @@
 }
 
 .bar__player {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
@@ -107,19 +104,19 @@
 .player__btn_play_svg {
   width: 22px;
   height: 20px;
-  fill: #d9d9d9;
+  fill: var(--color-player-btn);
 }
 
 .player__btn_next {
   margin-right: 28px;
-  fill: #a53939;
+  fill: var(--color-player-btn);
 }
 
 .player__btn_next_svg {
   width: 15px;
   height: 14px;
   fill: inherit;
-  stroke: #d9d9d9;
+  stroke: var(--color-player-btn);
 }
 
 .player__btn_repeat {
@@ -130,7 +127,7 @@
   width: 18px;
   height: 12px;
   fill: transparent;
-  stroke: #696969;
+  stroke: var(--color-player-btn);
 }
 
 .player__btn_shuffle {
@@ -146,7 +143,7 @@
   width: 19px;
   height: 12px;
   fill: transparent;
-  stroke: #696969;
+  stroke: var(--color-player-btn);
 }
 
 .player__track_play {
@@ -189,7 +186,7 @@
   width: 18px;
   height: 17px;
   fill: transparent;
-  stroke: #4e4e4e;
+  stroke: var(--color-gray-text);
 }
 
 .trackPlay__author {
@@ -202,7 +199,7 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: #ffffff;
+  color: var(--text-color);
   white-space: nowrap;
 }
 
@@ -216,7 +213,7 @@
   font-weight: 400;
   font-size: 13px;
   line-height: 24px;
-  color: #ffffff;
+  color: var(--text-color);
 }
 
 .trackPlay__like_dis {
@@ -275,7 +272,8 @@
 .volume__svg {
   width: 13px;
   height: 18px;
-  fill: transparent;
+  fill: var(--color-player-btn);
+  stroke: var(--color-gray-text);
 }
 
 .volume__progress {

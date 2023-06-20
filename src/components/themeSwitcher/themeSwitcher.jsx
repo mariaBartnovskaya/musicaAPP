@@ -1,15 +1,19 @@
-import { themes, useThemeContext } from '../../contexts/theme'
+import { useContext } from 'react'
+import { themes, ThemeContext } from '../../contexts/theme'
 import s from './themeSwitcher.module.css'
-import light from '../assets/img/icon/light.svg'
-import dark from '../assets/img/icon/dark.svg'
+import DarkIcon from '../assets/img/dark.png'
+import LightIcon from '../assets/img/light.png'
 
 function ThemeSwitcher() {
-  const { currentTheme, toggleTheme } = useThemeContext()
-  const darkTheme = <svg alt="dark">src={light}</svg>
-  const lightTheme = <svg alt="light">src={dark}</svg>
+  const { theme, toggleTheme } = useContext(ThemeContext)
+
   return (
     <div className={s.btn_theme_svg} onClick={toggleTheme} aria-hidden>
-      {currentTheme === themes.dark ? darkTheme : lightTheme}
+      <img
+        className={s.btn_theme_svg}
+        src={theme === themes.dark ? DarkIcon : LightIcon}
+        alt="switcher"
+      />
     </div>
   )
 }
