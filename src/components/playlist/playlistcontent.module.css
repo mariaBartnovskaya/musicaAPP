@@ -37,18 +37,15 @@
 
   justify-content: center;
   margin-right: 17px;
+  background:var(--bg-svg)
 }
-.dark.track__title_image {
-  background: #313131;
-}
-.light.track__title_image {
-  background: #f6f4f4;
-}
+
+
 .track__title_svg {
   width: 18px;
   height: 17px;
   fill: transparent;
-  stroke: #4e4e4e;
+  stroke: var(--color-gray-text);
 }
 .track__title_link {
   font-style: normal;
