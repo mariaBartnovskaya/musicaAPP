@@ -3,95 +3,15 @@ import { useState, useEffect } from 'react'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'react-loading-skeleton/dist/skeleton.css'
+// eslint-disable-next-line import/no-extraneous-dependencies
+
 import s from './playlistcontent.module.css'
 import icon from '../assets/img/icon/sprite.svg'
+import {useGetAllTracksQuery, useSetLikeMutation, useSetUnlikeMutation} from '../../store/services/musicApi'
 
-const playlistItems = [
-  {
-    id: '1',
-    title: 'Guilt',
-    author: 'Nero',
-    album: 'Welcome Reality',
-    time: '4:44',
-    skeletonWidth: 350,
-  },
-  {
-    id: '2',
-    title: 'Elektro',
-    author: 'Dynoro, Outwork, Mr. Gee',
-    album: 'Elektro',
-    time: '2:22',
-    skeletonWidth: 350,
-  },
-  {
-    id: '3',
-    title: 'I’m Fire',
-    author: 'Ali Bakgor',
-    album: 'I’m Fire',
-    time: '2:22',
-    skeletonWidth: 350,
-  },
-  {
-    id: '4',
-    title: 'Non Stop',
-    subtitle: '(Remix)',
-    author: 'Стоункат, Psychopath',
-    album: 'Non Stop',
-    time: '4:12',
-    skeletonWidth: 350,
-  },
-  {
-    id: '5',
-    title: 'Run Run',
-    subtitle: '(feat. AR/CO)',
-    author: 'Jaded, Will Clarke, AR/CO',
-    album: 'Run Run',
-    time: '2:54',
-    skeletonWidth: 350,
-  },
-  {
-    id: '6',
-    title: 'Eyes on Fire',
-    subtitle: '(Zeds Dead Remix)',
-    author: 'Blue Foundation, Zeds Dead',
-    album: 'Eyes on Fire',
-    time: '5:20',
-    skeletonWidth: 350,
-  },
-  {
-    id: '7',
-    title: 'Mucho Bien',
-    subtitle: '(Hi Profile Remix)',
-    author: 'HYBIT, Mr. Black, Offer Nissim, Hi Profile',
-    album: 'Mucho Bien',
-    time: '3:41',
-    skeletonWidth: 350,
-  },
-  {
-    id: '8',
-    title: 'Knives n Cherries',
-    author: 'minthaze',
-    album: 'Captivating',
-    time: '1:48',
-    skeletonWidth: 350,
-  },
-  {
-    id: '9',
-    title: 'How Deep Is Your Love',
-    author: 'Calvin Harris, Disciples',
-    album: 'How Deep Is Your Love',
-    time: '3:32',
-    skeletonWidth: 350,
-  },
-  {
-    id: '10',
-    title: 'Morena',
-    author: 'Tom Boxer',
-    album: 'Soundz Made in Romania',
-    time: '3:36',
-    skeletonWidth: 350,
-  },
-]
+
+
+
 
 function Playlist() {
   const [loading, setLoading] = useState(true)
@@ -100,6 +20,26 @@ function Playlist() {
       setLoading(false)
     }, 5000)
   }, [])
+  const {data = []} = useGetAllTracksQuery()
+  const tracksData = data
+  const [setLike] = useSetLikeMutation()
+  const [setUnlike] = useSetUnlikeMutation()
+  const [isFavourite, setFavourite] = useState('')
+  
+ 
+
+  const handleSetLike = () => {
+    if (isFavourite) {
+      setUnlike();
+      setFavourite(false);
+    } else {
+      setLike();
+      setFavourite(true);
+    }
+  }
+
+  
+
   return (
     <SkeletonTheme
       color="#313131"
@@ -107,8 +47,8 @@ function Playlist() {
       highlightColor="#313131"
     >
       <div className={`${s.content__playlist} playlist`}>
-        {playlistItems.map((item) => (
-          <div className={s.playlist__item} key={item.id}>
+        {tracksData.map((item) => (
+          <div className={s.playlist__item} key={item.id} id={item.id} >
             <div className={`${s.playlist__track} track`}>
               <div className={s.track__title}>
                 <div className={s.track__title_image}>
@@ -120,8 +60,8 @@ function Playlist() {
                   {loading ? (
                     <Skeleton width={350} />
                   ) : (
-                    <a className={s.track__title_link} href="http://">
-                      {item.title} <span className={s.track__title_span} />
+                    <a className={s.track__title_link} href={item.track_file} >
+                      {item.name} <span className={s.track__title_span} />
                     </a>
                   )}
                 </div>
@@ -148,10 +88,10 @@ function Playlist() {
                 <Skeleton width={1} />
               ) : (
                 <div className={s.track__time}>
-                  <svg className={s.track__time_svg} alt="time">
-                    <use xlinkHref={`${icon}#icon-like`} />
+                  <svg className={s.track__time_svg} alt="time" onClick={handleSetLike}>
+                    <use xlinkHref={`${icon}#icon-like`} fill={isFavourite ? 'red' : 'gray'} />
                   </svg>
-                  <span className={s.track__time_text}>{item.time}</span>
+                  <span className={s.track__time_text}>{item.duration_in_seconds}</span>
                 </div>
               )}
             </div>

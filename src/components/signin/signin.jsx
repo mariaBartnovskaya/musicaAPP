@@ -38,22 +38,28 @@ function SignIn() {
         localStorage.setItem('token', token.refresh)
 
         postLogin({ email, password }).then((user) => {
-          localStorage.setItem('user_id', user.data.id)
+          
           
           dispatch(
             setUser({
               email: user.data.email,
               id: user.data.id,
-              token: token.access,
+              token: token.refresh,
             })
           )
           
           navigate('/')
-          // eslint-disable-next-line no-console
-          console.log('переход на главную страницу')
-        })
         
+        })
+        .catch(error => {
+          // eslint-disable-next-line no-console
+          console.log(error);
+          // Выводим ошибку на экране
+          // eslint-disable-next-line no-alert
+          alert(`Ошибка при получении токена. Попробуйте еще раз.`);
+      });
       })
+
     
   }
   const handleRegistrationButtonClick = (event) => {

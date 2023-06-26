@@ -17,7 +17,7 @@ function Main() {
         <SearchBar />
         <CenterTitle />
         <Filter />
-        <CenterContent />
+        <CenterContent  />
       </div>
 
       <div className={s.main__sidebar}>

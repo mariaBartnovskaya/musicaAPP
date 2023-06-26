@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import {  useState } from 'react'
 
 import { useNavigate } from 'react-router-dom'
@@ -19,13 +20,15 @@ function Registration() {
               
       return
     }
- 
+ try{
       await postReg({
     "email": email,
     "password": password,
     "username": email,
     }).unwrap()
-    }
+    }catch (error) {
+      console.error(error)
+    }}
     if (isSuccess) navigate('/signin');
   return (
     <Wrapper>
