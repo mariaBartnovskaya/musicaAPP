@@ -103,7 +103,7 @@ function Player() {
                     <Skeleton count={1} width={51} height={51} />
                   ) : (
                     <svg className={s.trackPlay__svg} alt="music">
-                      <use xlinkHref="img/icon/sprite.svg#icon-note" />
+                      <use xlinkHref={`${icon}#icon-note`} />
                     </svg>
                   )}
                 </div>
@@ -148,9 +148,9 @@ function Player() {
                   <use xlinkHref={`${icon}#icon-volume`} />
                 </svg>
               </div>
-              <div className={`${s.volume__progress} _btn`}>
+              <div className={s.volume__progress}>
                 <input
-                  className={`${s.volume__progress_line} _btn`}
+                  className={s.volume__progress_line}
                   type="range"
                   name="range"
                 />

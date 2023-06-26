@@ -1,7 +1,7 @@
 /* eslint-disable react/button-has-type */
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
-import logo from '../assets/img/logo_modal.png'
+import logo from '../assets/img/logoBlack.png'
 import s from './signin.module.css'
 
 function SignIn({ setUser }) {

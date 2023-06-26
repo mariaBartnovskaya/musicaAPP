@@ -14,15 +14,14 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: #ffffff;
+  color: var(--text-color);
   margin-right: 16px;
 }
 
 .sidebar__avatar {
   width: 43px;
   height: 43px;
-  background-color: #313131;
-  border-radius: 50%;
+  background-color: var(--bg-gray);
 }
 .main__sidebar {
   max-width: 418px;

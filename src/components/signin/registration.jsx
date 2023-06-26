@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import { useNavigate } from 'react-router-dom'
-import logo from '../assets/img/logo_modal.png'
+import logo from '../assets/img/logoBlack.png'
 import Wrapper from '../wrapper/wrapper'
 import s from './signin.module.css'
 

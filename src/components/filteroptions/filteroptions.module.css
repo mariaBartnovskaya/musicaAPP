@@ -3,7 +3,7 @@
   margin-top: 10px;
   z-index: 2;
   z-index: 2;
-  background-color: #313131;
+  background-color: var(--color-gray-text);
   width: 248px;
   border-radius: 12px;
 
@@ -28,7 +28,7 @@
 
   font-feature-settings: 'pnum' on, 'lnum' on;
 
-  color: #ffffff;
+  color: var(--text-color);
 }
 
 .filter__button:not(:last-child) {
