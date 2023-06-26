@@ -62,7 +62,7 @@ function Registration() {
               name="password"
               id="reppassword"
               placeholder="Повторите пароль"
-              value={password}
+            
               onChange={(e) => setPassRep(e.target.value)}
             />
             <button

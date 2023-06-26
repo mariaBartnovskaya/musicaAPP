@@ -1,18 +1,18 @@
 /* eslint-disable import/order */
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/button-has-type */
-import { useEffect, useState } from 'react'
+import {  useState } from 'react'
 import { useNavigate } from 'react-router'
 import logo from '../assets/img/logoBlack.png'
 import s from './signin.module.css'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import {
   usePostTokenMutation,
   usePostLoginMutation,
   
 } from '../../store/services/user';
 
-import { isLogin, setUser } from '../../store/slices/user'
+import {  setUser } from '../../store/slices/user'
 
 function SignIn() {
   const dispatch = useDispatch();
@@ -24,11 +24,10 @@ function SignIn() {
   const [postToken] = usePostTokenMutation();
 
 
-  const isAllowed = useSelector(isLogin)
-  useEffect(()=>{
-    if (isAllowed) navigate('/login')  
-  },[isAllowed]
-  )
+  
+  
+  
+  
 
   const handleLogin = async () => {
     await postToken({ email, password })
@@ -38,13 +37,13 @@ function SignIn() {
         localStorage.setItem('token', token.refresh)
 
         postLogin({ email, password }).then((user) => {
-          
+          localStorage.setItem('user_id', user.data.id)
           
           dispatch(
             setUser({
               email: user.data.email,
               id: user.data.id,
-              token: token.refresh,
+              token: token.access,
             })
           )
           
@@ -62,8 +61,8 @@ function SignIn() {
 
     
   }
-  const handleRegistrationButtonClick = (event) => {
-    event.preventDefault()
+  const handleRegistrationButtonClick = () => {
+    
     navigate('/registration', { replace: true })
   }
   return (
