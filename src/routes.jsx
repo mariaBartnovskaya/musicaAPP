@@ -27,13 +27,12 @@ function AppRoutes() {
       <Route path="/selection/playlist/2" element={<Playlist2 />} />
       <Route path="/selection/playlist/3" element={<Playlist3 />} />
       <Route path="/registration" element={<Registration />} />
+      
       <Route element={<ProtectedRoute isAllowed={user.id} />}>
 
 
         <Route path="/" element={<Main />} />
         </Route>
-
-
 
       <Route path="*" element={<NotFound />} />
     </Routes>

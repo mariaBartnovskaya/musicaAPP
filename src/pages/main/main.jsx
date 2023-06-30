@@ -9,7 +9,10 @@ import SidebarBlock from '../../components/sidebarBlock/sidebarBlock'
 import s from '../../App.module.css'
 import Sidebar from '../../components/sidebar/sidebar'
 
+
 function Main() {
+  
+
   return (
     <main className={s.main}>
       <Sidebar />

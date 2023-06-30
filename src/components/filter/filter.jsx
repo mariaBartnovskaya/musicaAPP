@@ -8,8 +8,9 @@ import Genre from '../genre/genre'
 import Performer from '../performer/perfomer'
 import Year from '../year/year'
 import s from './filter.module.css'
-import {useGetAllTracksQuery} from '../../store/services/musicApi'
+
 import { removeFilterYears, removeFilterAuthor, removeFilterGenre } from '../../store/slices/setFilters';
+import { useGetAllTracksQuery } from '../../store/services/musicApi'
 
 
 function Filter() {
@@ -19,17 +20,17 @@ function Filter() {
   }
 
   const dispatch = useDispatch()
-  const {data} = useGetAllTracksQuery()
+  const {data = []} = useGetAllTracksQuery()
+  const tracksData = data
 
-   const authorTrack = data.map(item => item.author)
+   const authorTrack = tracksData.map(item => item.author)
     const author = Array.from(new Set(authorTrack));
 
-    const genreTrack = data.map(item => item.genre,)
+    const genreTrack = tracksData.map(item => item.genre,)
     const genre = Array.from(new Set(genreTrack));
 
     const years = ['Сначала новые','Сначала старые']   
 
-    
   const filterAuthor = useSelector(state => state.setFilters.author);
   const filterGenre = useSelector(state => state.setFilters.genre);
   const filterYears = useSelector(state => state.setFilters.years)
@@ -39,8 +40,8 @@ function Filter() {
     <div className={` ${s.centerblock__filter} filter`}>
       <div className={s.filter__title}>Искать по:</div>
 
-      <div onClick={() => dispatch(removeFilterAuthor())} aria-hidden className={`${s.circle_count} ${filterAuthor.length === 0 ? s.hidden : ''}`}>
-      {filterAuthor.length} 
+      <div onClick={() => dispatch(removeFilterAuthor())} aria-hidden className={`${s.circle_count} ${filterAuthor.length === 0 ? s.hidden : ''}`} >
+      
         <Performer 
         category ='performer'
        
@@ -54,7 +55,7 @@ function Filter() {
                              />}
       </div>
       <div onClick={() => dispatch(removeFilterYears())} aria-hidden className={`${s.circle_count} ${filterYears.length === 0 ? s.hidden : ''}`}> 
-      {filterYears.length === 0 ? '0' : '1'}
+      
         <Year
         category = 'year'
           isActive={visibleFilter === 'year'}
@@ -67,7 +68,7 @@ function Filter() {
                            />}
       </div>
       <div onClick={() => dispatch(removeFilterGenre())} aria-hidden  className={`${s.circle_count} ${filterGenre.length === 0 ? s.hidden : ''}`}> 
-        {filterGenre.length}
+       
         <Genre
         category='genre'
           isActive={visibleFilter === 'genre'}
