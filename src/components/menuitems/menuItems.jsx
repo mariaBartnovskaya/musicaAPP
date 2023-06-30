@@ -14,14 +14,14 @@ function MenuItem() {
             </NavLink>
           </li>
           <li className={s.menu__item}>
-            <NavLink to="/myplaylist" className={s.menu__link}>
+            <NavLink to="/favourites" className={s.menu__link}>
               Мой плейлист
             </NavLink>
           </li>
           <li className={s.menu__item}>
-            <a href="http://" className={s.menu__link}>
+          <NavLink to="/signin" className={s.menu__link}>
               Войти
-            </a>
+              </NavLink>
           </li>
         </ul>
       </div>

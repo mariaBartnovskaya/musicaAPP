@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-export const USERS = [
+export const playlists = [
     [
       {
           "id": 8,

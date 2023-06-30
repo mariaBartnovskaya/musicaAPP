@@ -23,53 +23,44 @@ function SignIn() {
   const [postLogin] = usePostLoginMutation();
   const [postToken] = usePostTokenMutation();
 
-
-  
-  
-  
-  
-
-  const handleLogin = async () => {
-    await postToken({ email, password })
-      .unwrap()
-      .then((token) => {
-       
-        localStorage.setItem('token', token.refresh)
-
-        postLogin({ email, password }).then((user) => {
-          localStorage.setItem('user_id', user.data.id)
-          
-          dispatch(
-            setUser({
-              email: user.data.email,
-              id: user.data.id,
-              token: token.access,
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    try {
+      await postToken({ email, password })
+        .unwrap()
+        .then((tokenData) => {
+          postLogin({ email, password })
+            .unwrap()
+            .then((userData) => {
+              dispatch(
+                setUser({
+                  email: userData.email,
+                  id: userData.id,
+                  token: tokenData,
+                  isLogin: true,
+                })
+              )
             })
-          )
-          
-          navigate('/')
-        
+            .then(() => {
+              navigate('/')
+            })
         })
-        .catch(error => {
-          // eslint-disable-next-line no-console
-          console.log(error);
-          // Выводим ошибку на экране
-          // eslint-disable-next-line no-alert
-          alert(`Ошибка при получении токена. Попробуйте еще раз.`);
-      });
-      })
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log('error', error)
+    }
+  }
+  const handleRegister = (event) => {
+    event.preventDefault();
+    navigate('/registration');
+  };
 
-    
-  }
-  const handleRegistrationButtonClick = () => {
-    
-    navigate('/registration', { replace: true })
-  }
+  
   return (
     <div className={s.wrapper}>
       <div className={s.container_enter}>
         <div className={s.modal__block}>
-          <form className={s.modal__form_login} id="formLogIn" action="#">
+          <div className={s.modal__form_login}>
             <div className={s.modal__logo}>
               <img src={logo} alt="logo" />
             </div>
@@ -100,15 +91,16 @@ function SignIn() {
             </button>
             <button
               className={s.modal__btn_signup}
-              onClick={handleRegistrationButtonClick}
-              id="btnSignUp"
+              onClick={handleRegister}
+              
             >
               Зарегистрироваться
             </button>
-          </form>
+            </div>
         </div>
       </div>
     </div>
+
   )
 }
 export default SignIn

@@ -1,3 +1,5 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable camelcase */
 import { useState, useEffect } from 'react'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
@@ -5,39 +7,57 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 // eslint-disable-next-line import/no-extraneous-dependencies
 
+import { useDispatch } from 'react-redux'
 import s from './playlistcontent.module.css'
 import icon from '../assets/img/icon/sprite.svg'
-import {useGetAllTracksQuery, useSetLikeMutation, useSetUnlikeMutation} from '../../store/services/musicApi'
+import { useSetLikeMutation, useSetUnlikeMutation } from '../../store/services/musicApi'
+import { selectSong } from '../../store/slices/selectSong'
 
 
 
 
 
-function Playlist() {
+
+function Playlist(track) {
   const [loading, setLoading] = useState(true)
   useEffect(() => {
     setTimeout(() => {
       setLoading(false)
     }, 5000)
   }, [])
-  const {data = []} = useGetAllTracksQuery()
-  const tracksData = data
+ 
+  const{id, track_file, name, author, duration_in_seconds, album} = track
+
   const [setLike] = useSetLikeMutation()
   const [setUnlike] = useSetUnlikeMutation()
   const [isFavourite, setFavourite] = useState('')
+ const dispatch = useDispatch()
   
- 
-
   const handleSetLike = () => {
     if (isFavourite) {
-      setUnlike();
+      setUnlike(track.id);
       setFavourite(false);
     } else {
-      setLike();
+      setLike(track.id);
       setFavourite(true);
     }
   }
-
+  const userId = Number(localStorage.getItem('userID'));
+  
+  track.stared_user.filter((user) => user.id === userId)
+  
+  const handleSelectSong = (e) => {
+     e.preventDefault();
+    dispatch(
+      selectSong({
+        id,
+        name,
+        track_file,
+        author,
+        album,
+        duration_in_seconds,
+      })
+    )}
   
 
   return (
@@ -47,8 +67,8 @@ function Playlist() {
       highlightColor="#313131"
     >
       <div className={`${s.content__playlist} playlist`}>
-        {tracksData.map((item) => (
-          <div className={s.playlist__item} key={item.id} id={item.id} >
+        
+          <div className={s.playlist__item} key={id} id={id} >
             <div className={`${s.playlist__track} track`}>
               <div className={s.track__title}>
                 <div className={s.track__title_image}>
@@ -60,8 +80,8 @@ function Playlist() {
                   {loading ? (
                     <Skeleton width={350} />
                   ) : (
-                    <a className={s.track__title_link} href={item.track_file} >
-                      {item.name} <span className={s.track__title_span} />
+                    <a className={s.track__title_link} href={track_file}  onClick={handleSelectSong}>
+                      {name} <span className={s.track__title_span} />
                     </a>
                   )}
                 </div>
@@ -71,7 +91,7 @@ function Playlist() {
                   <Skeleton width={270} />
                 ) : (
                   <a className={s.track__author_link} href="http://">
-                    {item.author}
+                    {author}
                   </a>
                 )}
               </div>
@@ -80,7 +100,7 @@ function Playlist() {
                   <Skeleton width={270} />
                 ) : (
                   <a className={s.track__album_link} href="http://">
-                    {item.album}
+                    {album}
                   </a>
                 )}
               </div>
@@ -91,12 +111,12 @@ function Playlist() {
                   <svg className={s.track__time_svg} alt="time" onClick={handleSetLike}>
                     <use xlinkHref={`${icon}#icon-like`} fill={isFavourite ? 'red' : 'gray'} />
                   </svg>
-                  <span className={s.track__time_text}>{item.duration_in_seconds}</span>
+                  <span className={s.track__time_text}>{duration_in_seconds}</span>
                 </div>
               )}
             </div>
           </div>
-        ))}
+      
       </div>
     </SkeletonTheme>
   )

@@ -1,7 +1,10 @@
 import Playlist from '../playlist/playlistcontent'
 import s from './centercontent.module.css'
+import {useGetAllTracksQuery} from '../../store/services/musicApi'
 
 function CenterContent() {
+  const {data = []} = useGetAllTracksQuery()
+  const tracksData = data
   return (
     <div className={s.centerblock__content}>
       <div className={`${s.content__title} playlist_title`}>
@@ -14,7 +17,15 @@ function CenterContent() {
           </svg>
         </div>
       </div>
-      <Playlist />
+      {tracksData.map((item) => (
+      <Playlist key={item.id}
+                    name={item.name}
+                    author={item.author}
+                    album={item.album}
+                    time={item.duration_in_seconds}
+                    stared_user={item.stared_user}
+                    track_file={item.track_file}
+                    id={item.id} />))}
     </div>
   )
 }

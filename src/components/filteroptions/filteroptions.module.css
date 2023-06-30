@@ -34,3 +34,13 @@
 .filter__button:not(:last-child) {
   margin-right: 10px;
 }
+.dropdown_item {
+  padding: 10px;
+  cursor: pointer;
+  color: var(--color-basic-text);
+}
+
+.dropdown_item:hover {
+  color: #AD61FF;
+  cursor: pointer;;
+}

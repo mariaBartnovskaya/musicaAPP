@@ -32,10 +32,15 @@ const userSlice = createSlice({
       state.userName = ''
       state.token = ''
     },
-   
+    setCurrentTrackID: (state, { payload }) => ({
+      ...state,
+      currentTrackID: payload.id,
+    }),
     
   },
 })
-export const { setUser, removeUser, setToken } = userSlice.actions
+export const { setUser, removeUser, setToken , setCurrentTrackID} = userSlice.actions
 export default userSlice.reducer
 export const isLogin = (state) => state.user.isLogin
+export const getUserID = (state) => state.user.id
+export const selectCurrentTrackID = (state) => state.user.currentTrackID

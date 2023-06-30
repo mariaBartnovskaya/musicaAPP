@@ -12,29 +12,33 @@ function Registration() {
   const [password, setPassword] = useState('')
   const [passRep, setPassRep] = useState('')
   const navigate = useNavigate()
-  const [postReg, { isSuccess }] = usePostRegMutation()
+  const [postReg] = usePostRegMutation()
   
 
   const RegistrationButton = async () => {
+    
     if(password !== passRep){
               
       return
     }
  try{
       await postReg({
-    "email": email,
-    "password": password,
-    "username": email,
+    email,
+    password,
+    username: email,
     }).unwrap()
+    .then(() => {
+      navigate('/')
+    })
     }catch (error) {
       console.error(error)
     }}
-    if (isSuccess) navigate('/signin');
+    
   return (
     <Wrapper>
       <div className={s.container_enter}>
         <div className={s.modal__block}>
-          <form className={s.modal__form_login} id="formLogIn" action="#">
+          <div className={s.modal__form_login} >
             <div className={s.modal__logo}>
               <img src={logo} alt="logo" />
             </div>
@@ -72,7 +76,7 @@ function Registration() {
             >
               Register
             </button>
-          </form>
+          </div>
         </div>
       </div>
     </Wrapper>
