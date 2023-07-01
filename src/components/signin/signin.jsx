@@ -24,7 +24,7 @@ function SignIn() {
   const [postToken] = usePostTokenMutation();
   const isAllowed = useSelector(isLogin)
   useEffect(()=>{
-    if (isAllowed) navigate('/login')  
+    if (isAllowed) navigate('/')  
   },[isAllowed]
   )
 
