@@ -1,3 +1,4 @@
+/* eslint-disable object-shorthand */
 /* eslint-disable no-console */
 import {  useState } from 'react'
 
@@ -18,17 +19,17 @@ function Registration() {
   const RegistrationButton = async () => {
     
     if(password !== passRep){
-              
+             console.error('password does not match') ;
       return
     }
  try{
       await postReg({
-    email,
-    password,
+    email : email,
+    password: password,
     username: email,
     }).unwrap()
     .then(() => {
-      navigate('/')
+      navigate('/signin')
     })
     }catch (error) {
       console.error(error)

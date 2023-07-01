@@ -1,18 +1,18 @@
 /* eslint-disable import/order */
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/button-has-type */
-import {  useState } from 'react'
+import {  useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
 import logo from '../assets/img/logoBlack.png'
 import s from './signin.module.css'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   usePostTokenMutation,
   usePostLoginMutation,
   
 } from '../../store/services/user';
 
-import {  setUser } from '../../store/slices/user'
+import {  isLogin, setUser} from '../../store/slices/user'
 
 function SignIn() {
   const dispatch = useDispatch();
@@ -22,20 +22,28 @@ function SignIn() {
   const navigate = useNavigate()
   const [postLogin] = usePostLoginMutation();
   const [postToken] = usePostTokenMutation();
+  const isAllowed = useSelector(isLogin)
+  useEffect(()=>{
+    if (isAllowed) navigate('/login')  
+  },[isAllowed]
+  )
 
-  const handleLogin = async (event) => {
-    event.preventDefault();
+
+  const handleLogin = async () => {
+ 
     try {
       await postToken({ email, password })
         .unwrap()
         .then((tokenData) => {
+          localStorage.setItem('token', tokenData.refresh)
           postLogin({ email, password })
             .unwrap()
-            .then((userData) => {
+            .then((user) => {
+              
               dispatch(
                 setUser({
-                  email: userData.email,
-                  id: userData.id,
+                  email: user.email,
+                  id: user.id,
                   token: tokenData,
                   isLogin: true,
                 })
