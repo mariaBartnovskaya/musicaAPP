@@ -27,11 +27,17 @@ function Playlist(track) {
   }, [])
  
   const{id, track_file, name, author, duration_in_seconds, album} = track
-
+  const userID = Number(localStorage.getItem('user_id'));
+  
   const [setLike] = useSetLikeMutation()
   const [setUnlike] = useSetUnlikeMutation()
   const [isFavourite, setFavourite] = useState('')
  const dispatch = useDispatch()
+  
+ 
+  
+ 
+  track.stared_user.some((user) => Number(user.id) === Number(userID))
   
   const handleSetLike = () => {
     if (isFavourite) {
@@ -42,10 +48,7 @@ function Playlist(track) {
       setFavourite(true);
     }
   }
-  const userId = Number(localStorage.getItem('userID'));
-  
-  track.stared_user.filter((user) => user.id === userId)
-  
+
   const handleSelectSong = (e) => {
      e.preventDefault();
     dispatch(

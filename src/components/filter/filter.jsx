@@ -53,7 +53,7 @@ function Filter({tracksData}) {
                             category='performer'
                              />}
       </div>
-      <div onClick={() => dispatch(removeFilterYears())} aria-hidden className={`${s.circle_count} ${filterYears.length === 0 ? s.hidden : ''}`}> 
+      <div onClick={() => dispatch(removeFilterYears())} aria-hidden className={`${s.dropdown_contentt} ${filterYears.length === 0 ? s.hidden : ''}`}> 
       
         <Year
         category = 'year'

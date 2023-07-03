@@ -23,4 +23,27 @@
   line-height: 24px;
   margin-right: 15px;
 }
+.dropdown_content  {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 34px;
+  gap: 20px;
+  position: absolute;
+  width: 248px;
+  max-height: 200px;
+  overflow-y: scroll;
+  background: var(--dropdown-background);
+  box-sizing: border-box;
+  border: 10px solid var(--dropdown-border);
+}
 
+.dropdown_content ::-webkit-scrollbar {
+  width: 4px;
+} 
+.dropdown_content ::-webkit-scrollbar-track {
+  background:var(--scroll-background);
+} 
+.dropdown_content ::-webkit-scrollbar-thumb {
+  background: var(--a-color); 
+}
