@@ -8,7 +8,7 @@ export const musicApi = createApi({
     tagTypes: ['Tracks'],
     prepareHeaders: (headers, { getState }) => {
       const token  = getState().user.access
-      //   console.log(token)
+       console.log(token)
       if (token) {
         headers.set('Authorization', `Bearer ${token}`)
       }
