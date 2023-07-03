@@ -10,18 +10,17 @@ import Year from '../year/year'
 import s from './filter.module.css'
 
 import { removeFilterYears, removeFilterAuthor, removeFilterGenre } from '../../store/slices/setFilters';
-import { useGetAllTracksQuery } from '../../store/services/musicApi'
 
 
-function Filter() {
+
+function Filter({tracksData}) {
   const [visibleFilter, setVisibleFilter] = useState(null)
   const toggleVisibility = (filter) => {
     setVisibleFilter(visibleFilter === filter ? null : filter)
   }
 
   const dispatch = useDispatch()
-  const {data = []} = useGetAllTracksQuery()
-  const tracksData = data
+  
 
    const authorTrack = tracksData.map(item => item.author)
     const author = Array.from(new Set(authorTrack));

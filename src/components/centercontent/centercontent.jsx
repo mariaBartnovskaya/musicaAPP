@@ -1,10 +1,16 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable no-const-assign */
+
 import Playlist from '../playlist/playlistcontent'
 import s from './centercontent.module.css'
-import {useGetAllTracksQuery} from '../../store/services/musicApi'
 
-function CenterContent() {
-  const {data = []} = useGetAllTracksQuery()
-  const tracksData = data
+
+function CenterContent({tracksData}) {
+ 
+
+  
+
   return (
     <div className={s.centerblock__content}>
       <div className={`${s.content__title} playlist_title`}>

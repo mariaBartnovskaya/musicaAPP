@@ -8,7 +8,9 @@ const initialState = {
   id: null,
   email: null,
   userName: null,
-  token: null,
+  token:null,
+
+  
 }
 
 const userSlice = createSlice({
@@ -25,21 +27,32 @@ const userSlice = createSlice({
       state.userName = action.payload.userName
       state.token = action.payload.token
       state.isLogin = true
+      state.access = action.payload.access
+      
     },
     removeUser: (state) => {            
       state.id = ''
       state.email = ''
       state.userName = ''
       state.token = ''
+     
     },
     setCurrentTrackID: (state, { payload }) => ({
       ...state,
       currentTrackID: payload.id,
     }),
+    setRefresh: (state, { payload }) => ({
+      ...state,
+      refresh: payload.refresh,
+    }),
+    setAccess: (state, { payload }) => ({
+      ...state,
+      access: payload.access,
+    }),
     
   },
 })
-export const { setUser, removeUser, setToken , setCurrentTrackID} = userSlice.actions
+export const { setUser, removeUser, setToken , setCurrentTrackID, setAccess,setRefresh} = userSlice.actions
 export default userSlice.reducer
 export const isLogin = (state) => state.user.isLogin
 export const getUserID = (state) => state.user.id

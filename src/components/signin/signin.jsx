@@ -1,3 +1,4 @@
+/* eslint-disable no-empty-pattern */
 /* eslint-disable import/order */
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/button-has-type */
@@ -20,8 +21,8 @@ function SignIn() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
-  const [postLogin] = usePostLoginMutation();
-  const [postToken] = usePostTokenMutation();
+  const [postLogin, {}] = usePostLoginMutation();
+  const [postToken, {}] = usePostTokenMutation();
   const isAllowed = useSelector(isLogin)
   useEffect(()=>{
     if (isAllowed) navigate('/')  
@@ -39,12 +40,12 @@ function SignIn() {
           postLogin({ email, password })
             .unwrap()
             .then((user) => {
-              
+              localStorage.setItem('user_id', user.id)
               dispatch(
                 setUser({
                   email: user.email,
                   id: user.id,
-                  token: tokenData,
+                  token: tokenData.access,
                   isLogin: true,
                 })
               )
@@ -54,8 +55,8 @@ function SignIn() {
             })
         })
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log('error', error)
+      // eslint-disable-next-line no-alert
+      alert(`Ошибка ${error.status}: ${error.data.detail}`)
     }
   }
   const handleRegister = (event) => {

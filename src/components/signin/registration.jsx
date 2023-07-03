@@ -32,7 +32,8 @@ function Registration() {
       navigate('/signin')
     })
     }catch (error) {
-      console.error(error)
+      // eslint-disable-next-line no-alert
+      alert(`Ошибка ${error.status}: ${error.data.detail}`)
     }}
     
   return (

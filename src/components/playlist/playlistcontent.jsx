@@ -42,9 +42,9 @@ function Playlist(track) {
       setFavourite(true);
     }
   }
-  const userId = Number(localStorage.getItem('userID'));
   
-  track.stared_user.filter((user) => user.id === userId)
+  
+
   
   const handleSelectSong = (e) => {
      e.preventDefault();
