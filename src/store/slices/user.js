@@ -9,7 +9,7 @@ const initialState = {
   email: null,
   userName: null,
   token:null,
-
+access:null
   
 }
 

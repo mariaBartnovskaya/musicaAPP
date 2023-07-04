@@ -3,7 +3,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/button-has-type */
 import {  useEffect, useState } from 'react'
-import { useNavigate } from 'react-router'
+
 import logo from '../assets/img/logoBlack.png'
 import s from './signin.module.css'
 import { useDispatch, useSelector } from 'react-redux'
@@ -14,6 +14,7 @@ import {
 } from '../../store/services/user';
 
 import {  isLogin, setUser} from '../../store/slices/user'
+import { useNavigate } from 'react-router';
 
 function SignIn() {
   const dispatch = useDispatch();
