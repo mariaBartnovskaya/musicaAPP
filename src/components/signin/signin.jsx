@@ -14,7 +14,7 @@ import {
 } from '../../store/services/user';
 
 import {  isLogin, setUser} from '../../store/slices/user'
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 function SignIn() {
   const dispatch = useDispatch();

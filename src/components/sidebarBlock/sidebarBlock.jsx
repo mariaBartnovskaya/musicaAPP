@@ -2,7 +2,7 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react'
 
-import { useNavigate } from 'react-router'
+import { useNavigate } from 'react-router-dom'
 import playlist01 from '../assets/img/playlist01.png'
 import playlist02 from '../assets/img/playlist02.png'
 import playlist03 from '../assets/img/playlist03.png'
