@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch} from 'react-redux'
 import Options from '../filteroptions/filteroptions'
 
 import Genre from '../genre/genre'
@@ -30,16 +30,12 @@ function Filter({tracksData}) {
 
     const years = ['Сначала новые','Сначала старые']   
 
-  const filterAuthor = useSelector(state => state.setFilters.author);
-  const filterGenre = useSelector(state => state.setFilters.genre);
-  const filterYears = useSelector(state => state.setFilters.years)
-
-
+  
   return (
     <div className={` ${s.centerblock__filter} filter`}>
       <div className={s.filter__title}>Искать по:</div>
 
-      <div onClick={() => dispatch(removeFilterAuthor())} aria-hidden className={`${s.circle_count} ${filterAuthor.length === 0 ? s.hidden : ''}`} >
+      <div onClick={() => dispatch(removeFilterAuthor())} aria-hidden className={`${s.circle_count} `} >
       
         <Performer 
         category ='performer'
@@ -53,7 +49,7 @@ function Filter({tracksData}) {
                             category='performer'
                              />}
       </div>
-      <div onClick={() => dispatch(removeFilterYears())} aria-hidden className={`${s.dropdown_contentt} ${filterYears.length === 0 ? s.hidden : ''}`}> 
+      <div onClick={() => dispatch(removeFilterYears())} aria-hidden className={`${s.dropdown_contentt} `}> 
       
         <Year
         category = 'year'
@@ -66,7 +62,7 @@ function Filter({tracksData}) {
                             category='year'
                            />}
       </div>
-      <div onClick={() => dispatch(removeFilterGenre())} aria-hidden  className={`${s.circle_count} ${filterGenre.length === 0 ? s.hidden : ''}`}> 
+      <div onClick={() => dispatch(removeFilterGenre())} aria-hidden  className={`${s.circle_count} `}> 
        
         <Genre
         category='genre'
