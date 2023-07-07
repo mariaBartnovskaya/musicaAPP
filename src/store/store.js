@@ -5,7 +5,7 @@ import userReducer from './slices/user'
 import { musicApi } from './services/musicApi'
 import { userApi } from './services/user'
 import currentTrackReducer from './slices/setTracks'
-import setFiltersReducer from './slices/setFilters'
+import filteredTracksReducer from './slices/setFilters'
 import selectedSongReducer from './slices/selectSong'
 
 export const store = configureStore({
@@ -14,7 +14,7 @@ export const store = configureStore({
     [musicApi.reducerPath]: musicApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
     currentTrack: currentTrackReducer,
-    setFilters: setFiltersReducer,
+    filteredTracks: filteredTracksReducer,
     selectedSong: selectedSongReducer,
   },
   middleware: (getDefaultMiddlware) =>

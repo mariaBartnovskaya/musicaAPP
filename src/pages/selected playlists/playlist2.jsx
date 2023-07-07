@@ -4,6 +4,7 @@ import s from '../../components/centercontent/centercontent.module.css'
 import st from '../../components/centertitle/centerTitle.module.css'
 import Sidebar from "../../components/sidebar/sidebar"
 import style from '../../App.module.css'
+import Player from "../../components/barPlayer/barPlayer"
 
 function Playlist2 () {
     const {data = []} = useGetAllTracksQuery()
@@ -24,6 +25,7 @@ function Playlist2 () {
                       track_file={item.track_file}
                       id={item.id} />))}
                       </div>
+                      <Player/>
                       </main>
 )
 }

@@ -9,27 +9,33 @@ import s from './centercontent.module.css'
 
 function CenterContent({tracksData}) {
  
-const filteredTracks = tracksData ?? []
+let filteredTracks = tracksData ?? []
   
-const filterAuthor = useSelector(state => state.setFilters.author);
-  const filterGenre = useSelector(state => state.setFilters.genre);
-  const filterYears = useSelector(state => state.setFilters.years);
-  switch (filterYears) {
-    case 'Сначала новые': filteredTracks = tracksData.filter((element) => element).sort(({release_date: adate}, {release_date: bdate}) => (new Date(adate).valueOf()) - (new Date(bdate).valueOf()));   
-        break;
-        case 'Сначала старые':filteredTracks = tracksData.filter((element) => element).sort(({release_date: adate}, {release_date: bdate}) => (new Date(bdate).valueOf()) - (new Date(adate).valueOf()))            
-        break;
+  const filteredGenre = useSelector((state) => state.filteredTracks.genre);
+  const filteredAuthor = useSelector((state) => state.filteredTracks.author);
+  const filteredYears = useSelector((state) => state.filteredTracks.years);
+  
+
+  if (filteredAuthor.length > 0) {
+    filteredTracks = filteredTracks.filter((track) =>
+      filteredAuthor.includes(track.author)
+    );
+  }
+if (filteredGenre.length > 0) {
+  filteredTracks = filteredTracks.filter((track) =>
+    filteredGenre.includes(track.genre)
+  );
+  switch (filteredYears[0]) {
+    case 'newer':
+      filteredTracks = filteredTracks.filter((el) => el).sort(({ release_date: adate }, { release_date: bdate }) => new Date(bdate).valueOf() - new Date(adate).valueOf())
+      break
+    case 'older':
+      filteredTracks = filteredTracks.filter((el) => el).sort(({ release_date: adate }, { release_date: bdate }) => new Date(adate).valueOf() - new Date(bdate).valueOf())
+      break
     default:
-        break;
-}
+      break
+  }
 
-  if ( filterAuthor.length > 0) {
-
-    filteredTracks = tracksData.filter(({ author }) => filterAuthor.includes(author))
-} 
-if (filterGenre.length > 0) {
-
-  filteredTracks = tracksData.filter(({ genre }) => filterGenre.includes(genre))
 }
   return (
     <div className={s.centerblock__content}>

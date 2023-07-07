@@ -1,22 +1,22 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { useDispatch } from 'react-redux'
 import s from './filteroptions.module.css'
-import { setFilterAuthor, setFilterGenre, setFilterYears } from '../../store/slices/setFilters';
+import { setFilteredAuthor, setFilteredGenre, setFilteredYears } from '../../store/slices/setFilters';
 
 function Options({ data, category }) {
 
   const dispatch = useDispatch()
   const handleFilterClick = (item) => {
     switch (category) {
-     case 'year': dispatch(setFilterYears({
+     case 'year': dispatch(setFilteredYears({
          years: item,            
      }));           
          break;
-     case 'performer': dispatch(setFilterAuthor({
+     case 'performer': dispatch(setFilteredAuthor({
          author: item,            
      }));           
              break;
-     case 'genre': dispatch(setFilterGenre({
+     case 'genre': dispatch(setFilteredGenre({
          genre: item,            
      }));           
              break;

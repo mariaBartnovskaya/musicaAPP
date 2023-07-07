@@ -41,7 +41,7 @@ function SidebarBlock() {
             </a>
           </div>
           <div className={s.sidebar__item}>
-            <a className={s.sidebar__link} href="#" onClick={() => handleClick(1)}>
+            <a className={s.sidebar__link} href="#" onClick={() => handleClick(3)}>
               <img
                 className={s.sidebar__img}
                 src={playlist03}

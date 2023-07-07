@@ -1,56 +1,48 @@
 /* eslint-disable no-param-reassign */
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable prefer-destructuring */
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {   
-    years: [],
-    author: [],
-    genre: [],
-    serchInp: '',
-  };
-
-const setFilters = createSlice({
-  name: 'setFilters',
-    initialState,
+const initialState = {
+  years: '',
+  author: [],
+  genre: [],
   
+};
 
-  reducers: {   
-    setFilterYears: (state, action) => {
-        state.years = action.payload.years;     
+const filteredTracksSlice = createSlice({
+  name: 'filteredTracks',
+  initialState,
+  reducers: {
+    setFilteredYears: (state, action) => {
+      state.years = action.payload.years;
     },
-
-    removeFilterYears: (state) => {
-      state.years = [];     
-  },
-
-    setFilterAuthor: (state, action) => { 
-         
-        if(state.author.includes(action.payload.author)){
-            return
-        }       
-        state.author.push(action.payload.author);     
-        },
-
-        removeFilterAuthor: (state) => {
-          state.author = [];     
-      },
-
-    setFilterGenre: (state, action) => {
-
-        if(state.genre.includes(action.payload.genre)){
-            return
-        } 
-        state.genre.push(action.payload.genre);       
+    
+    setFilteredGenre: (state, action) => {
+      const genre = action.payload.genre;
+      if (!state.genre.includes(genre)) {
+        state.genre.push(genre);
+        console.log(state);
+      } else {
+        state.genre = state.genre.filter((item) => item !== genre);
+      }
     },
-   removeFilterGenre: (state) => {
-          state.genre = [];     
-      },
-    setFilterInp: (state, action) => ({
-      ...state,
-      serchInp: action.payload.serchInp       
-    }),
+    setFilteredAuthor: (state, action) => {
+      const author = action.payload.author;
+      if (!state.author.includes(author)) {
+        state.author.push(author);
+        console.log(author);
+      } else {
+        state.author = state.author.filter((item) => item !== author);
+      }
+    },
   },
 });
 
-export const {setFilterYears, setFilterAuthor, setFilterGenre, removeFilterYears, removeFilterAuthor, removeFilterGenre, setFilterInp} = setFilters.actions;
-export default setFilters.reducer;
+export const {
+  setFilteredGenre,
+  setFilteredAuthor,
+  setFilteredYears,
+  
+} = filteredTracksSlice.actions;
+
+export default filteredTracksSlice.reducer;

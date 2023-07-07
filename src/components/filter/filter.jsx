@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react'
-import { useDispatch} from 'react-redux'
+
 import Options from '../filteroptions/filteroptions'
 
 import Genre from '../genre/genre'
@@ -9,7 +9,7 @@ import Performer from '../performer/perfomer'
 import Year from '../year/year'
 import s from './filter.module.css'
 
-import { removeFilterYears, removeFilterAuthor, removeFilterGenre } from '../../store/slices/setFilters';
+
 
 
 
@@ -19,23 +19,26 @@ function Filter({tracksData}) {
     setVisibleFilter(visibleFilter === filter ? null : filter)
   }
 
-  const dispatch = useDispatch()
+
   
 
-   const authorTrack = tracksData.map(item => item.author)
-    const author = Array.from(new Set(authorTrack));
+  const artistItemsSet = new Set(
+    tracksData ? tracksData.map((track) => track.author) : []
+  );
+  const author = [...artistItemsSet];
 
-    const genreTrack = tracksData.map(item => item.genre,)
-    const genre = Array.from(new Set(genreTrack));
+  const genreItemsSet = new Set(
+    tracksData ? tracksData.map((track) => track.genre) : []
+  );
+  const genre = [...genreItemsSet];
 
-    const years = ['Сначала новые','Сначала старые']   
-
+  const years = ['Newer', 'Older'];
   
   return (
     <div className={` ${s.centerblock__filter} filter`}>
       <div className={s.filter__title}>Искать по:</div>
 
-      <div onClick={() => dispatch(removeFilterAuthor())} aria-hidden className={`${s.circle_count} `} >
+      <div  >
       
         <Performer 
         category ='performer'
@@ -49,7 +52,7 @@ function Filter({tracksData}) {
                             category='performer'
                              />}
       </div>
-      <div onClick={() => dispatch(removeFilterYears())} aria-hidden className={`${s.dropdown_contentt} `}> 
+      <div > 
       
         <Year
         category = 'year'
@@ -62,7 +65,7 @@ function Filter({tracksData}) {
                             category='year'
                            />}
       </div>
-      <div onClick={() => dispatch(removeFilterGenre())} aria-hidden  className={`${s.circle_count} `}> 
+      <div > 
        
         <Genre
         category='genre'

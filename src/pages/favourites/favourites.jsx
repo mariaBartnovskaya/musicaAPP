@@ -29,7 +29,7 @@ const playlists = dataTracks.map((item) => (<Playlist key={item.id}
         <Sidebar />
         
         <div className={s.main__centerblock}> 
-        <h1>Мои треки</h1>
+        <h1 className={s.track__title}>Мои треки</h1>
         <ul>{playlists}</ul>
           </div>
           

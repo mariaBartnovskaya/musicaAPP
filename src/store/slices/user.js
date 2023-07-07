@@ -56,4 +56,5 @@ export const { setUser, removeUser, setToken , setCurrentTrackID, setAccess,setR
 export default userSlice.reducer
 export const isLogin = (state) => state.user.isLogin
 export const getUserID = (state) => state.user.id
+export const getUserName  = (state) => state.user.email
 export const selectCurrentTrackID = (state) => state.user.currentTrackID
