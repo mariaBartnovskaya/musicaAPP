@@ -1,33 +1,76 @@
+/* eslint-disable no-empty-pattern */
+/* eslint-disable import/order */
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/button-has-type */
-import { useState } from 'react'
-import { useNavigate } from 'react-router'
+import {  useEffect, useState } from 'react'
+
 import logo from '../assets/img/logoBlack.png'
 import s from './signin.module.css'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  usePostTokenMutation,
+  usePostLoginMutation,
+  
+} from '../../store/services/user';
 
-function SignIn({ setUser }) {
-  const [username, setUsername] = useState('')
+import {  isLogin, setUser} from '../../store/slices/user'
+import { useNavigate } from 'react-router-dom';
+
+function SignIn() {
+  const dispatch = useDispatch();
+
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value)
+  const [postLogin, {}] = usePostLoginMutation();
+  const [postToken, {}] = usePostTokenMutation();
+  const isAllowed = useSelector(isLogin)
+  useEffect(()=>{
+    if (isAllowed) navigate('/')  
+  },[isAllowed]
+  )
+
+
+  const handleLogin = async () => {
+ 
+    try {
+      await postToken({ email, password })
+        .unwrap()
+        .then((tokenData) => {
+          localStorage.setItem('token', tokenData.refresh)
+          postLogin({ email, password })
+            .unwrap()
+            .then((user) => {
+              localStorage.setItem('user_id', user.id)
+              dispatch(
+                setUser({
+                  email: user.email,
+                  id: user.id,
+                  token: tokenData.access,
+                  isLogin: true,
+                })
+              )
+            })
+            .then(() => {
+              navigate('/')
+            })
+        })
+    } catch (error) {
+      // eslint-disable-next-line no-alert
+      alert(`Ошибка ${error.status}: ${error.data.detail}`)
+    }
   }
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value)
-  }
-  const handleLogin = (event) => {
-    event.preventDefault()
-    setUser({ login: username })
-    navigate('/')
-  }
-  const handleRegistrationButtonClick = (event) => {
-    event.preventDefault()
-    navigate('/registration', { replace: true })
-  }
+  const handleRegister = (event) => {
+    event.preventDefault();
+    navigate('/registration');
+  };
+
+  
   return (
     <div className={s.wrapper}>
       <div className={s.container_enter}>
         <div className={s.modal__block}>
-          <form className={s.modal__form_login} id="formLogIn" action="#">
+          <div className={s.modal__form_login}>
             <div className={s.modal__logo}>
               <img src={logo} alt="logo" />
             </div>
@@ -35,10 +78,10 @@ function SignIn({ setUser }) {
               className={`${s.modal__input} login`}
               type="text"
               name="login"
-              id="username"
+              id="email"
               placeholder="Логин"
-              value={username}
-              onChange={handleUsernameChange}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <input
               className={`${s.modal__input} password`}
@@ -47,7 +90,7 @@ function SignIn({ setUser }) {
               id="password"
               placeholder="Пароль"
               value={password}
-              onChange={handlePasswordChange}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <button
               className={s.modal__btn_enter}
@@ -58,15 +101,16 @@ function SignIn({ setUser }) {
             </button>
             <button
               className={s.modal__btn_signup}
-              onClick={handleRegistrationButtonClick}
-              id="btnSignUp"
+              onClick={handleRegister}
+              
             >
               Зарегистрироваться
             </button>
-          </form>
+            </div>
         </div>
       </div>
     </div>
+
   )
 }
 export default SignIn
